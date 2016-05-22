@@ -128,3 +128,83 @@ bool Arbol::insertarElemRecursivo(Nodo* *r, const int &pElem){
         }
 
 } 
+
+void Arbol::borrar(Nodo *n)
+{
+    if (n != NULL)
+    {
+        borrar(n->getIzq());
+        borrar(n->getDer());
+        delete n;
+    }
+}
+
+void Arbol::insertarVerificado(int x)
+{
+    if (!existe(x))
+    {
+        Nodo *nuevo;
+        nuevo = new Nodo();
+        nuevo->getInfo() = x;
+        nuevo->getIzq() = NULL;
+        nuevo->getDer() = NULL;
+        if (raiz == NULL)
+            raiz = nuevo;
+        else
+        {
+            Nodo *anterior, *reco;
+            anterior = NULL;
+            reco = raiz;
+            while (reco != NULL)
+            {
+                anterior = reco;
+                if (x < reco->getInfo())
+                    reco = reco->getIzq();
+                else
+                    reco = reco->getDer();
+            }
+            if (x < anterior->getInfo())
+                anterior->getIzq() = nuevo;
+            else
+                anterior->getDer() = nuevo;
+        }
+    }
+}
+
+bool Arbol::existe(int x)
+{
+    Nodo *reco = raiz;
+    while (reco != NULL) 
+    {
+        if (x == reco->getInfo())
+                return true;
+        else
+            if (x>reco->getInfo())
+                reco = reco->getDer();
+            else
+                reco = reco->getIzq();
+    }
+    return false;
+}
+
+ void Arbol::imprimirMayor()
+ {
+    if (raiz != NULL) 
+    {
+        Nodo *reco = raiz;
+        while (reco->getDer() != NULL)
+            reco = reco->getDer();
+        cout<<"Mayor valor del árbol:" <<reco->getInfo();
+    }
+}
+ 
+  void Arbol::imprimirMenor()
+ {
+    if (raiz != NULL) 
+    {
+        Nodo *reco = raiz;
+        while (reco->getIzq() != NULL)
+            reco = reco->getIzq();
+        cout<<"Menor valor del árbol:" <<reco->getInfo();
+    }
+}

@@ -30,6 +30,13 @@ public:
         int pesoRecursivo(Nodo*);
         bool insertarElemento (const int &pElem);
         bool insertarElemRecursivo(Nodo* *r, const int &pElem);
+        void borrar(Nodo *n);
+        
+        void insertarVerificado(int x);
+        bool existe(int x);
+        void imprimirMayor();
+        void imprimirMenor();
+        
 private:
     Nodo* raiz;
     

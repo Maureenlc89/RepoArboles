@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=arboles
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/arboles
+CND_ARTIFACT_NAME_Debug=gitestruc2
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/gitestruc2
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=arboles.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/arboles.tar
+CND_PACKAGE_NAME_Debug=gitestruc2.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/gitestruc2.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=arboles
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/arboles
+CND_ARTIFACT_NAME_Release=gitestruc2
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/gitestruc2
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=arboles.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/arboles.tar
+CND_PACKAGE_NAME_Release=gitestruc2.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/gitestruc2.tar
 #
 # include compiler specific variables
 #
