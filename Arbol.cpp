@@ -6,13 +6,13 @@
 
 /* 
  * File:   Arbol.cpp
- * Author: Maureen
+ * Author: Jean, Maureen, Jose
  * 
  * Created on May 17, 2016, 10:15 PM
  */
 
 #include "Arbol.h"
-
+#include <iostream>
 
 Arbol::Arbol() {
     raiz=NULL;
@@ -128,26 +128,32 @@ bool Arbol::insertarElemRecursivo(Nodo* *r, const int &pElem){
         }
 
 } 
-
-void Arbol::borrar(Nodo *n)
-{
-    if (n != NULL)
-    {
-        borrar(n->getIzq());
-        borrar(n->getDer());
-        delete n;
-    }
-}
+//
+//void Arbol::borrar(Nodo *n)
+//{
+//    if (n != NULL)
+//    {
+//        borrar(n->getIzq());
+//        borrar(n->getDer());
+//        delete n;
+//    }
+//}
 
 void Arbol::insertarVerificado(int x)
 {
+    
+    if(existe(x)){
+        cout << " El numero ya existe, pruebe otro." << endl;
+    }
+            
     if (!existe(x))
     {
         Nodo *nuevo;
         nuevo = new Nodo();
-        nuevo->getInfo() = x;
-        nuevo->getIzq() = NULL;
-        nuevo->getDer() = NULL;
+        nuevo->setInfo(x);
+        nuevo->setIzq(NULL);
+        nuevo->setDer(NULL);
+
         if (raiz == NULL)
             raiz = nuevo;
         else
@@ -164,10 +170,13 @@ void Arbol::insertarVerificado(int x)
                     reco = reco->getDer();
             }
             if (x < anterior->getInfo())
-                anterior->getIzq() = nuevo;
+                anterior->setIzq(nuevo);
             else
-                anterior->getDer() = nuevo;
+                anterior->setDer(nuevo);
         }
+        
+        cout << " Se ha ingresado el numero: " << x << endl;
+              
     }
 }
 
@@ -177,6 +186,7 @@ bool Arbol::existe(int x)
     while (reco != NULL) 
     {
         if (x == reco->getInfo())
+                
                 return true;
         else
             if (x>reco->getInfo())
@@ -207,4 +217,46 @@ bool Arbol::existe(int x)
             reco = reco->getIzq();
         cout<<"Menor valor del árbol:" <<reco->getInfo();
     }
+}
+ 
+Nodo* Arbol::getMenor(Nodo* r){
+    while(r->getIzq() != NULL) r = r->getIzq();
+    return r;
+}
+  
+  struct Nodo* Arbol::borrar(struct Nodo *raiz, int data){
+      
+    if(raiz == NULL) return raiz;
+      else if(data < raiz->getInfo()) raiz->setIzq(borrar(raiz->getIzq(),data));
+      else if(data > raiz->getInfo()) raiz->setDer(borrar(raiz->getDer(), data));
+    else {
+      // Caso 1
+      if(raiz->getIzq() == NULL && raiz->getDer() == NULL){
+        delete raiz;
+        raiz = NULL;
+      // Caso 2
+      } else if(raiz->getIzq() == NULL){
+          struct Nodo *temp = raiz;
+          raiz = raiz->getDer();
+          delete temp;
+      } else if(raiz->getDer() == NULL){
+          struct Nodo *temp = raiz;
+          raiz = raiz->getIzq();
+          delete temp;
+      } else{
+          struct Nodo *temp = getMenor(raiz->getDer());
+          raiz->setInfo(temp->getInfo());
+          raiz->setDer(borrar(raiz->getDer(), temp->getInfo()));
+      }
+    }
+    return raiz;
+}
+  
+  
+void Arbol::imprimirInorden(Nodo* n){
+
+    if(n == NULL) return;
+        imprimirInorden(n->getIzq());
+        cout<<"-" << n->getInfo();
+        imprimirInorden(n->getDer());
 }
